@@ -52,4 +52,4 @@ RUN echo "http://mirrors.aliyun.com/alpine/latest-stable/main/" > /etc/apk/repos
 && cd k-vim/ \                                                                                                          
 && sh -x install.sh   
 RUN /usr/sbin/sshd -D
-EXPOSE 22 8000
+EXPOSE 22
