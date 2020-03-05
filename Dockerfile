@@ -3,8 +3,8 @@ ENV user user1
 ENV userpass password
 ENV rootpass password
 
-RUN echo "http://mirrors.aliyun.com/alpine/3.10/main/" > /etc/apk/repositories \
-&& echo "http://mirrors.aliyun.com/alpine/3.10/community/" >> /etc/apk/repositories \
+RUN echo "http://mirrors.aliyun.com/alpine/v3.10/main/" > /etc/apk/repositories \
+&& echo "http://mirrors.aliyun.com/alpine/v3.10/community/" >> /etc/apk/repositories \
 && apk update \
 && apk add  build-base \
         ctags \
