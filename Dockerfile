@@ -7,6 +7,7 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.10/main/" > /etc/apk/repositories 
 && echo "http://mirrors.aliyun.com/alpine/v3.10/community/" >> /etc/apk/repositories \
 && apk update \
 && apk add git bash openssh-server openssh-client vim \
+   python3 \
 #build vim                                                             
 && git clone --depth 1  https://github.com/Valloric/YouCompleteMe /root/.vim/bundle/YouCompleteMe \                     
 && cd /root/.vim/bundle/YouCompleteMe \                                                                                 
