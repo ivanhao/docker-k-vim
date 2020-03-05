@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.10.4
 ENV user user1
 ENV userpass password
 ENV rootpass password
