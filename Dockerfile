@@ -16,7 +16,6 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.10/main/" > /etc/apk/repositories 
         ncurses-dev \
         python \
         python-dev \
-        build-essential \
         cmake \
         clang \
         git bash openssh-server openssh-client \
