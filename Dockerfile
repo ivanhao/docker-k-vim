@@ -13,8 +13,8 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories \
         libxt-dev \
         make \
         ncurses-dev \
-        python \
-        python-dev \
+        python3 \
+        python3-dev \
         cmake \
         clang \
         vim \
