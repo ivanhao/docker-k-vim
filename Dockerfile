@@ -17,7 +17,6 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories \
         python-dev \
         cmake \
         clang \
-        build-essential \
         vim \
         git bash openssh-server openssh-client \
 #build vim
