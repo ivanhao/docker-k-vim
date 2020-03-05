@@ -6,33 +6,8 @@ ENV rootpass password
 RUN echo "http://mirrors.aliyun.com/alpine/v3.10/main/" > /etc/apk/repositories \
 && echo "http://mirrors.aliyun.com/alpine/v3.10/community/" >> /etc/apk/repositories \
 && apk update \
-&& apk add  build-base \
-        ctags \
-        git \
-        libx11-dev \
-        libxpm-dev \
-        libxt-dev \
-        make \
-        ncurses-dev \
-        python \
-        python-dev \
-        cmake \
-        clang \
-        git bash openssh-server openssh-client \
-#build vim
-&& cd /tmp \
-&& git clone https://github.com/vim/vim \
-&& cd /tmp/vim \
-&& ./configure \
---disable-gui \
---disable-netbeans \
---enable-multibyte \
---enable-pythoninterp \
---prefix /usr \
---with-features=big \
---with-python-config-dir=/usr/lib/python2.7/config \
-&& make install \                                                                                                       
-&& cp /usr/share/vim/vim80/vimrc_example.vim  ~/.vimrc \                                                                
+&& apk add git bash openssh-server openssh-client vim \
+#build vim                                                             
 && git clone --depth 1  https://github.com/Valloric/YouCompleteMe /root/.vim/bundle/YouCompleteMe \                     
 && cd /root/.vim/bundle/YouCompleteMe \                                                                                 
 && git submodule update --init --recursive \                                                                            
