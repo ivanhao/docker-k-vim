@@ -1,24 +1,25 @@
 FROM alpine:3.9
-ENV user user1
-ENV userpass password
+#ENV user user1
+#ENV userpass password
 ENV rootpass password
 
 RUN echo "http://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories \
 && echo "http://mirrors.aliyun.com/alpine/v3.9/community/" >> /etc/apk/repositories \
 && apk update \
-&& apk add  build-base \
-        ctags \
-        libx11-dev \
-        libxpm-dev \
-        libxt-dev \
-        make \
+&& apk add ctags \
+#build-base \
+#        libx11-dev \
+#        libxpm-dev \
+#        libxt-dev \
+#        make \
         ncurses-dev \
-        python3 \
-        python3-dev \
-        cmake \
-        clang \
+#        python3 \
+#        python3-dev \
+#        cmake \
+#        clang \
         vim \
-        git bash openssh-server openssh-client \
+        git bash \
+#openssh-server openssh-client \
 #build vim
 #&& cd /tmp \
 #&& git clone https://github.com/vim/vim \
@@ -31,24 +32,28 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.9/main/" > /etc/apk/repositories \
 #--prefix /usr \
 #--with-features=big \
 #--with-python-config-dir=/usr/lib/python2.7/config \
-#&& make install \                                                                                                       
-#&& cp /usr/share/vim/vim80/vimrc_example.vim  ~/.vimrc \                                                                
-&& git clone --depth 1  https://github.com/Valloric/YouCompleteMe /root/.vim/bundle/YouCompleteMe \                     
-&& cd /root/.vim/bundle/YouCompleteMe \                                                                                 
-&& git submodule update --init --recursive \                                                                            
-&& ./install.py --clang-completer \                                                                                     
-&& cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py ~/.vim/ \                                
-&& cd ~/.vim/bundle/YouCompleteMe  && cp -r autoload plugin third_party python /root/.vim \                             
-&& cp /usr/lib/libclang.so.4.0 ~/.vim/third_party/ycmd/ \          
-&& sed -i "s/#PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
- && ssh-keygen -t rsa -P "" -f /etc/ssh/ssh_host_rsa_key \
- && ssh-keygen -t ecdsa -P "" -f /etc/ssh/ssh_host_ecdsa_key \
- && ssh-keygen -t ed25519 -P "" -f /etc/ssh/ssh_host_ed25519_key \
- && echo "root:${rootpass}" | chpasswd \
- && useradd ${username} -G ssh -p ${userpass} && mkdir -p /home/${username}/.ssh \
-&& cd ~ \                                                                                                               
-&& git clone https://github.com/wklken/k-vim.git \                                                                      
-&& cd k-vim/ \                                                                                                          
-&& sh -x install.sh   
-RUN /usr/sbin/sshd -D
-EXPOSE 22
+#&& make install \ 
+#&& cp /usr/share/vim/vim80/vimrc_example.vim  ~/.vimrc \ 
+#&& git clone --depth 1  https://github.com/Valloric/YouCompleteMe /root/.vim/bundle/YouCompleteMe \ 
+#&& cd /root/.vim/bundle/YouCompleteMe \ 
+#&& git submodule update --init --recursive \ 
+#&& ./install.py --clang-completer \ 
+#&& cp ~/.vim/bundle/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py ~/.vim/ \ 
+#&& cd ~/.vim/bundle/YouCompleteMe  && cp -r autoload plugin third_party python /root/.vim \ 
+#&& cp /usr/lib/libclang.so.4.0 ~/.vim/third_party/ycmd/ \ 
+#&& sed -i "s/#PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config \
+# && ssh-keygen -t rsa -P "" -f /etc/ssh/ssh_host_rsa_key \
+# && ssh-keygen -t ecdsa -P "" -f /etc/ssh/ssh_host_ecdsa_key \
+# && ssh-keygen -t ed25519 -P "" -f /etc/ssh/ssh_host_ed25519_key \
+# && echo "root:${rootpass}" | chpasswd \
+# && useradd ${username} -G ssh -p ${userpass} && mkdir -p /home/${username}/.ssh \
+&& export http_proxy=http://192.168.199.5:10086 \
+&& export https_proxy=http://192.168.199.5:10086 \
+&& mv /usr/bin/vi /usr/bin/vi.bak \
+&& ln -s /usr/bin/vim /usr/bin/vi \
+&& cd ~ \ 
+&& git clone https://github.com/ivanhao/k-vim.git \ 
+&& cd k-vim/ \ 
+&& sh -x install.sh
+#RUN /usr/sbin/sshd -D
+#EXPOSE 22
